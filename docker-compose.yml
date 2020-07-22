@@ -1,0 +1,15 @@
+version: '3'
+services:
+  app:
+    container_name: urlshortener-mongo
+    restart: always
+    build: .
+    ports:
+      - '5000:5000'
+    links:
+      - mongo
+
+  mongo:
+    image: mongo
+    ports:
+      - '20717:20717'

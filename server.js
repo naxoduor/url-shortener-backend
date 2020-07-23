@@ -6,23 +6,7 @@ const cors = require('cors')
 const shortId = require('shortid')
 const db = require('./db/index.js')
 
-app.use(function(req, res, next) {
-    var allowedOrigins = ['http://104.248.73.139','http://127.0.0.1'];
-    var origin = req.headers.origin;
-    if(allowedOrigins.indexOf(origin) > -1){
-         res.setHeader('Access-Control-Allow-Origin', origin);
-    }
-    res.header('Access-Control-Allow-Methods', 'GET, OPTIONS');
-    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-    res.header('Access-Control-Allow-Credentials', true);
-    return next();
-  })
-  
-  app.use(cors({
-      origin: 'http://104.248.73.139',
-      credentials: true,
-    })
-    )
+
 db.connect().then(() => {
     console.log("database connected")
 }).catch((error) => {
@@ -30,6 +14,7 @@ db.connect().then(() => {
     console.log(error)
 })
 
+app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 

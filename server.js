@@ -19,7 +19,7 @@ app.use(function(req, res, next) {
   })
   
   app.use(cors({
-      origin: 'http://127.0.0.1',
+      origin: 'http://104.248.73.139',
       credentials: true,
     })
     )
